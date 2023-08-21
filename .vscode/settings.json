@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "player",
+            "database": "music_player_api",
+            "username": "postgres",
+            "password": "root"
+        }
+    ]
+}

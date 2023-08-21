@@ -7,7 +7,7 @@ interface UserCreationAttrs {
 }
 
 @Table({ tableName: 'users' })
-export class User extends Model<User, UserCreationAttrs> {
+export class Users extends Model<Users, UserCreationAttrs> {
     @ApiProperty({ example: '1' })
     @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
     id: number;
@@ -18,18 +18,9 @@ export class User extends Model<User, UserCreationAttrs> {
 
     @ApiProperty({ example: 'avatar.jpg', description: 'user profile picture' })
     @Column({ type: DataType.STRING, allowNull: true })
-    picture: string;
+    avatar: string;
 
     @ApiProperty({ example: '123456789' })
     @Column({ type: DataType.STRING, allowNull: false })
     password: string;
-
-    @ApiProperty({ example: 'true', description: 'is the user banned or not' })
-    @Column({ type: DataType.BOOLEAN, defaultValue: false })
-    banned: boolean;
-
-    @ApiProperty({ example: 'blocked for hooliganism', description: 'ban reason' })
-    @Column({ type: DataType.STRING, allowNull: true })
-    banReason: string;
-
 }
