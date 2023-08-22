@@ -39,3 +39,4 @@ lerna-debug.log*
 .eslintrc.js
 .prettierrc
 test
+static/*
