@@ -8,6 +8,7 @@ import { Users } from './users/users.model';
 import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
 import { MusicModule } from './music/music.module';
+import { AuthorsModule } from './authors/authors.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { MusicModule } from './music/music.module';
     AuthModule,
     FilesModule,
     MusicModule,
+    AuthorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
