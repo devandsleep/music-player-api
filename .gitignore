@@ -40,3 +40,8 @@ lerna-debug.log*
 .prettierrc
 test
 static/*
+
+# Sequelize migration files
+migrations
+models
+config

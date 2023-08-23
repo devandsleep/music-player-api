@@ -13,13 +13,11 @@ export class MusicService {
     async create(dto: MusicDataDto, preview: any, audio: any) {
         const previewName = await this.filesService.createFile(preview);
         const audioName = await this.filesService.createAudioFile(audio);
-        console.log(1)
         const track = await this.musicRepository.create({
             ...dto,
             preview: previewName,
             audio: audioName
         });
-        console.log(2)
         return track;
     }
 }

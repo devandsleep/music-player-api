@@ -18,7 +18,6 @@ export class FilesService {
             fs.writeFileSync(path.join(filePath, fileName), file[0].buffer)
             return fileName;
         } catch (e) {
-            console.log(e)
             throw new HttpException('Error on image file recording', HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
@@ -26,7 +25,6 @@ export class FilesService {
     // @this.upload.single('audio') // 'audio' should match the field name in the form
     async createAudioFile(file: Express.Multer.File): Promise<string> {
         try {
-            console.log(file)
             const fileName = uuid.v4() + '.mp3'; // Use appropriate extension for audio files
             const filePath = path.resolve(__dirname, '..', '..', 'static', 'music');
 
@@ -37,8 +35,6 @@ export class FilesService {
             fs.writeFileSync(path.join(filePath, fileName), file[0].buffer);
             return fileName;
         } catch (e) {
-            console.log(e)
-
             throw new HttpException('Error on audio file recording', HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
