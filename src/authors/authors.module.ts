@@ -4,7 +4,7 @@ import { AuthorsService } from './authors.service';
 import { Authors } from './authors.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Release, ReleaseSchema } from './releases.scheme';
+import { Release, ReleaseSchema } from './schemes/releases.scheme';
 
 @Module({
   controllers: [AuthorsController],

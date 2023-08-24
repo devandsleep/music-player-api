@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { InjectModel as InjectMongo } from '@nestjs/mongoose';
 import { Authors } from './authors.model';
-import { Release } from './releases.scheme';
+import { Release } from './schemes/releases.scheme';
 import * as mongoose from 'mongoose';
+import { CreateReleaseDto } from './dto/release-create.dto';
 
 
 
@@ -20,19 +21,8 @@ export class AuthorsService {
         return authors;
     }
 
-    async createRelease() {
-        const createdRelease = await this.releaseModel.create({
-            id: 1,
-            title: 'My Single',
-            preview: 'eminem.jpg',
-            tracks: [{
-                track_id: 1,
-                authors: [1, 2, 3],
-                is_drop: false
-            }],
-            createdAt: Date.now(),
-            release_date: Date.now()
-        });
+    async createRelease(dto: CreateReleaseDto) {
+        const createdRelease = await this.releaseModel.create(dto);
         return createdRelease;
     }
 }

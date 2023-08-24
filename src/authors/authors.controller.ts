@@ -1,7 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AuthorsService } from './authors.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Authors } from './authors.model';
+import { CreateReleaseDto } from './dto/release-create.dto';
 
 @Controller('authors')
 export class AuthorsController {
@@ -15,10 +16,9 @@ export class AuthorsController {
         return this.authorsService.getAllAuthors();
     }
 
-    @Get('release')
-    getRelease() {
-        this.authorsService.createRelease();
-        return 'good'
+    @Post('release')
+    createRelease(@Body() releaseDto: CreateReleaseDto) {
+        return this.authorsService.createRelease(releaseDto);
     }
 
 }
