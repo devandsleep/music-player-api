@@ -15,4 +15,10 @@ export class AuthorsController {
         return this.authorsService.getAllAuthors();
     }
 
+    @Get('release')
+    getRelease() {
+        this.authorsService.createRelease();
+        return 'good'
+    }
+
 }

@@ -9,9 +9,11 @@ import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
 import { MusicModule } from './music/music.module';
 import { AuthorsModule } from './authors/authors.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
+    MongooseModule.forRoot("mongodb+srv://devandsleep:YbEjdX26y33021TN@cluster0.s8yeyxo.mongodb.net/?retryWrites=true&w=majority"),
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
