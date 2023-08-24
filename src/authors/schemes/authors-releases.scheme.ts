@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 
 @Schema({ timestamps: false })
-export class AuthorsReleases {
+export class AuthorsRelease {
     @Prop()
     id: number;
 
@@ -15,5 +15,5 @@ export class AuthorsReleases {
 
 }
 
-export type AuthorsReleasesDocument = AuthorsReleases & Document;
-export const AuthorsReleasesSchema = SchemaFactory.createForClass(AuthorsReleases);
+export type AuthorsReleaseDocument = AuthorsRelease & Document;
+export const AuthorsReleaseSchema = SchemaFactory.createForClass(AuthorsRelease);

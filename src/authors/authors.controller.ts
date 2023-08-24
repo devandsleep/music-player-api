@@ -16,9 +16,16 @@ export class AuthorsController {
         return this.authorsService.getAllAuthors();
     }
 
+    @Get('subscribe')
+    subRelease() {
+        this.authorsService.subscribeRelease()
+        return "subscribed";
+    }
+
     @Post('release')
     createRelease(@Body() releaseDto: CreateReleaseDto) {
         return this.authorsService.createRelease(releaseDto);
     }
+
 
 }
