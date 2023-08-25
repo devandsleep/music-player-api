@@ -13,10 +13,6 @@ import { AuthorsRelease, AuthorsReleaseSchema } from './schemes/authors-releases
   imports: [
     // forwardRef(() => AuthModule),
     SequelizeModule.forFeature([Authors]),
-    MongooseModule.forFeature([
-      { name: Release.name, schema: ReleaseSchema },
-      { name: AuthorsRelease.name, schema: AuthorsReleaseSchema }
-    ]),
   ],
   exports: [
     AuthorsService,
