@@ -5,6 +5,7 @@ interface MusicCreationAttrs {
     title: string,
     preview?: string,
     audio: string,
+    auditions?: number,
 }
 
 @Table({ tableName: 'music' })

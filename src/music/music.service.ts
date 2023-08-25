@@ -17,20 +17,27 @@ export class MusicService {
         const track = await this.musicRepository.create({
             ...dto,
             preview: previewName,
-            audio: audioName
+            audio: audioName,
+            // auditions: Math.floor(Math.random() * (100000 - 10000000 + 1)) + 10000000,
         });
         return track;
     }
 
     async updateTrack(id: string, dto: UpdateMusicDto, preview: any, audio: any) {
-        const previewName = await this.filesService.createFile(preview);
-        const audioName = await this.filesService.createAudioFile(audio);
         const track = await this.musicRepository.findByPk(id)
         if (track) {
+            const previewName = await this.filesService.createFile(preview);
+            const audioName = await this.filesService.createAudioFile(audio);
+
+            const fs = require('fs');
+            fs.unlink(`${process.cwd()}/static/music/${track.audio}`, () => { });
+            fs.unlink(`${process.cwd()}/static/images/${track.preview}`, () => { });
+
             return await this.musicRepository.update({
                 ...dto,
                 preview: previewName,
                 audio: audioName,
+                // auditions: Math.floor(Math.random() * (100000 - 10000000 + 1)) + 10000000,
             }, { where: { id }, returning: true })
         }
         throw new NotFoundException('Track not found.');
@@ -39,7 +46,11 @@ export class MusicService {
     async deleteTrack(id: string) {
         const track = await this.musicRepository.findByPk(id)
         if (track) {
-            return await this.musicRepository.destroy()
+            const fs = require('fs');
+            fs.unlink(`${process.cwd()}/static/music/${track.audio}`, () => { });
+            fs.unlink(`${process.cwd()}/static/images/${track.preview}`, () => { });
+
+            return await track.destroy()
         }
         throw new NotFoundException('Track not found.');
     }
