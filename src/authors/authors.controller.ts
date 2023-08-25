@@ -1,10 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { AuthorsService } from './authors.service';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Authors } from './authors.model';
-import { ReleaseDto } from '../releases/dto/release.dto';
-import { Release } from '../releases/releases.scheme';
 
+@ApiTags('Users')
 @Controller('authors')
 export class AuthorsController {
 
