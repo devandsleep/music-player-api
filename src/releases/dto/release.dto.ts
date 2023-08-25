@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, MinLength } from "class-validator";
+import { IsDate, IsString } from "class-validator";
 
-export class CreateReleaseDto {
+export class ReleaseDto {
 
     readonly id: number;
 

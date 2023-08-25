@@ -10,6 +10,7 @@ import { FilesModule } from './files/files.module';
 import { MusicModule } from './music/music.module';
 import { AuthorsModule } from './authors/authors.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ReleasesModule } from './releases/releases.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     FilesModule,
     MusicModule,
     AuthorsModule,
+    ReleasesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
