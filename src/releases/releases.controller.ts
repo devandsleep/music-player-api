@@ -17,30 +17,28 @@ export class ReleasesController {
         return this.releasesService.findAllReleases()
     }
 
+    @ApiOperation({summary: 'create release'})
     @Post('release')
     createRelease(@Body() releaseDto: ReleaseDto) {
         return this.releasesService.createRelease(releaseDto);
     }
 
+    @ApiOperation({summary: 'get release by ID'})
     @Get('release/:id')
     getById(@Param('id') id: string): Promise<Release> {
         return this.releasesService.findReleaseById(id)
     }
 
+    @ApiOperation({summary: 'update release by ID'})
     @Put('release/:id')
     updateRelease(@Param("id") id: string, @Body() release: ReleaseDto): Promise<Release> {
         return this.releasesService.updateReleaseById(id, release)
     }
 
+    @ApiOperation({summary: 'delete release by ID'})
     @Delete('release/:id')
     deleteById(@Param('id') id: string): Promise<Release> {
         return this.releasesService.deleteReleaseById(id)
-    }
-
-    @Get('subscribe')
-    subRelease() {
-        this.releasesService.subscribeRelease()
-        return "subscribed";
     }
     
 }
