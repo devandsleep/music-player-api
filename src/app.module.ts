@@ -11,9 +11,14 @@ import { MusicModule } from './music/music.module';
 import { AuthorsModule } from './authors/authors.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ReleasesModule } from './releases/releases.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'static'),
+    }),
     MongooseModule.forRoot("mongodb+srv://devandsleep:YbEjdX26y33021TN@cluster0.s8yeyxo.mongodb.net/?retryWrites=true&w=majority"),
     ConfigModule.forRoot({
       envFilePath: '.env',

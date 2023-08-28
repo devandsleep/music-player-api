@@ -18,6 +18,12 @@ export class MusicController {
         return this.musicService.getTrackById(id)
     }
 
+    @ApiOperation({summary: 'get popular tracks'})
+    @Get()
+    async getTrendingTracks() {
+        return this.musicService.getTrending()
+    }
+
     @ApiOperation({summary: 'add new track'})
     @Post()
     @UseInterceptors(FileFieldsInterceptor([

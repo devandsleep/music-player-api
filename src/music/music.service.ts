@@ -62,4 +62,9 @@ export class MusicService {
         }
         throw new NotFoundException('Track not found.');
     }
+
+    async getTrending(): Promise<Music[]> {
+        const tracks = await this.musicRepository.findAll()
+        return tracks
+    }
 }
