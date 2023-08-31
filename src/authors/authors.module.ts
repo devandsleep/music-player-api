@@ -6,6 +6,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Release, ReleaseSchema } from '../releases/releases.scheme';
 import { AuthorsRelease, AuthorsReleaseSchema } from './schemes/authors-releases.scheme';
+import { FilesModule } from 'src/files/files.module';
 
 @Module({
   controllers: [AuthorsController],
@@ -13,6 +14,7 @@ import { AuthorsRelease, AuthorsReleaseSchema } from './schemes/authors-releases
   imports: [
     // forwardRef(() => AuthModule),
     SequelizeModule.forFeature([Authors]),
+    FilesModule,
   ],
   exports: [
     AuthorsService,
