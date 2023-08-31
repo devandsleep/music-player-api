@@ -21,8 +21,15 @@ export class AuthorsController {
         return this.authorsService.getAllAuthors();
     }
 
-    @ApiOperation({summary: 'create new author'})
+    @ApiOperation({summary: 'get top 5 popular authors'})
     @ApiResponse({status: 200, type: [Authors]})
+    @Get('/popular')
+    getPopularAuthors() {
+        return this.authorsService.getPopularAuthors();
+    }
+
+    @ApiOperation({summary: 'create new author'})
+    @ApiResponse({status: 200, type: Authors})
     @Post('create')
     createAuthor(@Body() dto: AuthorDataDto) {
         return this.authorsService.createAuthor(dto);
@@ -38,7 +45,7 @@ export class AuthorsController {
     // }
 
     @ApiOperation({summary: 'update author by ID'})
-    @ApiResponse({status: 200, type: [Authors]})
+    @ApiResponse({status: 200, type: Authors})
     @Put('avatar/:id')
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'avatar', maxCount: 1 },

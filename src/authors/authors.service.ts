@@ -10,12 +10,16 @@ import { AuthorUpdateDto } from './dto/author-update.dto';
 @Injectable()
 export class AuthorsService {
 
-    constructor(@InjectModel(Authors) private authorRepository: typeof Authors,
-        private filesService: FilesService) { }
+    constructor(@InjectModel(Authors) private authorRepository: typeof Authors, private filesService: FilesService) { }
 
     async getAllAuthors() {
         const authors = await this.authorRepository.findAll({ include: { all: true } });
         return authors;
+    }
+
+    async getPopularAuthors() {
+        const authors = await this.authorRepository.findAll({ include: { all: true }, limit: 5 })
+        return authors
     }
 
     async createAuthor(dto: AuthorDataDto) {
