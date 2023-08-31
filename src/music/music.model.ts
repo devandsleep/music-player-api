@@ -26,4 +26,8 @@ export class Music extends Model<Music, MusicCreationAttrs> {
     @ApiProperty({ example: '1000' })
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
     auditions: number;
+
+    @ApiProperty({ example: '1' })
+    @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
+    release: number;
 }
