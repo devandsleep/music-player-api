@@ -2,12 +2,24 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema()
+export class Author {
+    @Prop()
+    author_id: number;
+
+    @Prop()
+    name: string;
+}
+
+export type AuthorDocument = Author & Document;
+export const AuthorSchema = SchemaFactory.createForClass(Author);
+
+@Schema()
 export class Track {
     @Prop()
     track_id: number;
 
-    @Prop({ type: [Number] })
-    authors: number[];
+    @Prop({ type: [AuthorSchema] })
+    authors: AuthorDocument[];
 
     @Prop()
     is_drop: boolean;
