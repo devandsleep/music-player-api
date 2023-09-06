@@ -4,6 +4,8 @@ import { MusicService } from './music.service';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { MusicDataDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
+import { release } from 'os';
+import { UpdateMusicReleaseDto } from './dto/update-music-release.dto';
 
 
 @ApiTags('Music')
@@ -16,6 +18,12 @@ export class MusicController {
     @Get(':id')
     async getTrackById(@Param('id') id: string) {
         return this.musicService.getTrackById(id)
+    }
+
+    @ApiOperation({summary: 'get track by title'})
+    @Get('search/:title')
+    async getTrackByTitle(@Param('title') title: string) {
+        return this.musicService.getTrackByTitle(title)
     }
 
     @ApiOperation({summary: 'get popular tracks'})
@@ -49,6 +57,15 @@ export class MusicController {
         @UploadedFiles() files: { preview: Express.Multer.File[], audio: Express.Multer.File[] }
     ) {
         return this.musicService.updateTrack(id, dto, files.preview, files.audio)
+    }
+
+    @ApiOperation({summary: 'update release track by ID'})
+    @Put('release/:id')
+    async updateRelease(
+        @Param("id") id: string,
+        @Body() dto: UpdateMusicReleaseDto,
+    ) {
+        return this.musicService.updateRelease(id, dto)
     }
 
     @ApiOperation({summary: 'delete track by ID'})

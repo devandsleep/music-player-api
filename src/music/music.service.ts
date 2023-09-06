@@ -4,6 +4,7 @@ import { FilesService } from 'src/files/files.service';
 import { InjectModel } from '@nestjs/sequelize';
 import { Music } from './music.model';
 import { UpdateMusicDto } from './dto/update-music.dto';
+import { UpdateMusicReleaseDto } from './dto/update-music-release.dto';
 
 @Injectable()
 export class MusicService {
@@ -43,6 +44,17 @@ export class MusicService {
         throw new NotFoundException('Track not found.');
     }
 
+    async updateRelease(id: string, dto: UpdateMusicReleaseDto) {
+        const track = await this.musicRepository.findByPk(id)
+        if (track) {
+            return this.musicRepository.update({
+                ...track,
+                release: dto.release,
+            }, { where: { id }, returning: true })
+        }
+        throw new NotFoundException('Track not found.');
+    }
+
     async deleteTrack(id: string) {
         const track = await this.musicRepository.findByPk(id)
         if (track) {
@@ -65,6 +77,18 @@ export class MusicService {
 
     async getTrending(): Promise<Music[]> {
         const tracks = await this.musicRepository.findAll()
+        return tracks
+    }
+
+    async getTrackByTitle(title: string) {
+        const { Op } = require('sequelize');
+        const tracks = await this.musicRepository.findAll({
+            where: {
+                title: {
+                    [Op.iLike]: `%${title}%`
+                }
+            }
+        })
         return tracks
     }
 }

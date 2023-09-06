@@ -22,6 +22,18 @@ export class AuthorsService {
         return authors
     }
 
+    async getAuthorByName(name: string) {
+        const { Op } = require('sequelize');
+        const authors = await this.authorRepository.findAll({
+            where: {
+                username: {
+                    [Op.iLike]: `%${name}%`
+                }
+            }
+        })
+        return authors
+    }
+
     async createAuthor(dto: AuthorDataDto) {
         const user = await this.authorRepository.create(dto)
         return user;

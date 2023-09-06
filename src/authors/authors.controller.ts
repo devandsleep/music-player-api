@@ -28,6 +28,12 @@ export class AuthorsController {
         return this.authorsService.getPopularAuthors();
     }
 
+    @ApiOperation({summary: 'get author by name'})
+    @Get('search/:name')
+    async getTrackByTitle(@Param('name') name: string) {
+        return this.authorsService.getAuthorByName(name)
+    }
+
     @ApiOperation({summary: 'create new author'})
     @ApiResponse({status: 200, type: Authors})
     @Post('create')
