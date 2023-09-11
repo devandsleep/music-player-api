@@ -22,4 +22,9 @@ export class UsersService {
     const user = await this.userRepository.findOne({ where: { username }, include: { all: true } })
     return user;
   }
+
+  async getUserById(id: string) {
+    const user = await this.userRepository.findOne({ where: { id }, include: { all: true } })
+    return user;
+  }
 }

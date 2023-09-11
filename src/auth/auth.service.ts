@@ -12,17 +12,17 @@ export class AuthService {
         private jwtService: JwtService) {}
 
     async login(dto: UserDataDto) {
-        const user = await this.validateUser(dto['params']);
+        const user = await this.validateUser(dto);
         return this.generateToken(user);
     }
 
     async registration(dto: UserDataDto) {
-        const candidate = await this.userService.getUserByUsername(dto['params'].username);
+        const candidate = await this.userService.getUserByUsername(dto.username);
         if (candidate) {
             throw new HttpException('Such a user already exists', HttpStatus.BAD_REQUEST)
         }
-        const hashPassword = await bcrypt.hash(dto['params'].password, 5);
-        const user = await this.userService.createUser({...dto['params'], password: hashPassword})
+        const hashPassword = await bcrypt.hash(dto.password, 5);
+        const user = await this.userService.createUser({...dto, password: hashPassword})
         return this.generateToken(user)
     }
 
