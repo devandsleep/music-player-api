@@ -19,7 +19,7 @@ import { join } from 'path';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'static'),
     }),
-    MongooseModule.forRoot("mongodb+srv://devandsleep:YbEjdX26y33021TN@cluster0.s8yeyxo.mongodb.net/?retryWrites=true&w=majority"),
+    MongooseModule.forRoot("your_url"),
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
